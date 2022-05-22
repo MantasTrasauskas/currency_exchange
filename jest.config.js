@@ -8,7 +8,7 @@ module.exports = {
     {
       displayName: 'currency-exchange',
       testMatch: ['<rootDir>/tests/*.test.(js)'],
-      rootDir: path.resolve(__dirname, 'src'),
+      rootDir: path.resolve(__dirname, '.'),
       testPathIgnorePatterns: ['/node_modules/'],
       coveragePathIgnorePatterns: ['/node_modules/', '/tests/', '/dist/'],
       transform: {
@@ -34,7 +34,6 @@ module.exports = {
     'text-summary',
     'cobertura',
   ],
-  "testResultsProcessor": "jest-jenkins-reporter",
   "coverageThreshold": {
     "global": {
       // "branches": 80,
