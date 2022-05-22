@@ -1,18 +1,18 @@
-import { Rates } from '../types/commonTypes';
+import { IRates } from '../types/commonTypes';
 import exchangeRateResolver from '../resolvers/exchangeRateResolver';
 
 export default class LRUCache {
-  private values: Map<string, Rates> = new Map<string, Rates>();
+  private values: Map<string, IRates> = new Map<string, IRates>();
   private maxEntries: number;
 
-  constructor(maxEntries: number = 3) {
+  constructor(maxEntries = 3) {
     this.maxEntries = maxEntries;
   }
 
-  public async get(key: string): Promise<Rates> {
+  public async get(key: string): Promise<IRates> {
     const hasKey = this.values.has(key);
     if (hasKey) {
-      let entry: Rates = <Rates>this.values.get(key);
+      const entry: IRates = <IRates>this.values.get(key);
       this.values.delete(key);
       this.values.set(key, entry);
       return entry;

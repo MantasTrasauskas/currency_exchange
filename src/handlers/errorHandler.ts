@@ -1,4 +1,5 @@
 import { ServerHttp2Stream } from 'http2';
+import { httpStatusCodes } from '../types/enums';
 import logger from '../utils/logger';
 
 export const errorHandler = (
@@ -9,7 +10,7 @@ export const errorHandler = (
   logger.error(`${message}: %o`, stack);
   if (stream != null) {
     stream.respond({
-      ':status': 500,
+      ':status': httpStatusCodes.INTERNAL_SERVER_ERROR,
     });
     stream.end(`Message: ${message}, Sack: ${stack}`);
   }

@@ -17,11 +17,11 @@ export interface IProcessEnv {
   CURRENY_EXHCANGE_API_PATH: string;
 }
 
-export interface Rates {
+export interface IRates {
   [name: string]: number;
 }
 
-export interface safeJSONResult {
+export interface ISafeJSONResult {
   status: safeJSONStatus;
   item: object | string | any;
 }

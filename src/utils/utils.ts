@@ -1,5 +1,5 @@
 import { IncomingHttpHeaders } from 'http2';
-import { IRequest, safeJSONResult } from '../types/commonTypes';
+import { IRequest, ISafeJSONResult } from '../types/commonTypes';
 import { queryString } from '../types/enums';
 import { errorHandler } from '../handlers/errorHandler';
 import { safeJSONStatus } from '../types/enums';
@@ -20,8 +20,9 @@ export const getRequestParams = (headers: IncomingHttpHeaders): IRequest => {
 };
 
 export const safeJSON = () => {
-  const parse = (item: string): safeJSONResult => {
-    let result : safeJSONResult =  {
+  const parse = (item: string): ISafeJSONResult => {
+    // eslint-disable-next-line prefer-const
+    let result: ISafeJSONResult = {
       status: safeJSONStatus.OK,
       item: {},
     };
@@ -34,8 +35,9 @@ export const safeJSON = () => {
     return result;
   };
 
-  const stringify = (item: object): safeJSONResult => {
-    let result: safeJSONResult = {
+  const stringify = (item: object): ISafeJSONResult => {
+    // eslint-disable-next-line prefer-const
+    let result: ISafeJSONResult = {
       status: safeJSONStatus.OK,
       item: '',
     };

@@ -1,10 +1,10 @@
 import http2 from 'http2';
-import { Rates } from '../types/commonTypes';
+import { IRates } from '../types/commonTypes';
 import { safeJSONStatus } from '../types/enums';
 import logger from '../utils/logger';
 import { safeJSON } from '../utils/utils';
 
-const exchangeRateResolver = (curreny: string): Promise<Rates> => {
+const exchangeRateResolver = (curreny: string): Promise<IRates> => {
   const session = http2.connect(
     <string>process.env.CURRENY_EXHCANGE_API_DOMAIN,
   );

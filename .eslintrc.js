@@ -7,7 +7,6 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:jest/recommended",
     "prettier",
-    "prettier/@typescript-eslint",
     "plugin:prettier/recommended",
   ],
   parserOptions: {
@@ -50,9 +49,7 @@ module.exports = {
   },
   ignorePatterns: [
     ".eslintrc.js",
-    "packages/example-server/*",
     "jest.config.js",
-    "*/metro.config.js",
   ],
   overrides: [
     {

@@ -1,8 +1,9 @@
 import http2 from 'http2';
-require('dotenv').config(); // eslint-disable-line @typescript-eslint/no-var-requires
+import dotenv from 'dotenv';
 import fs from 'fs';
 import router from './utils/router';
 import logger from './utils/logger';
+dotenv.config();
 
 const options = {
   key: fs.readFileSync('./key.pem'),
@@ -14,5 +15,7 @@ server.on('error', (err) => logger.error('Server error: %o', err));
 server.on('stream', router);
 
 server.listen(process.env.APP_PORT, () => {
-  logger.info(`🚀 ${process.env.npm_package_name} ready at https://localhost:${process.env.APP_PORT}`)
+  logger.info(
+    `🚀 ${process.env.npm_package_name} ready at https://localhost:${process.env.APP_PORT}`,
+  );
 });

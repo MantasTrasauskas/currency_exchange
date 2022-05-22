@@ -2,8 +2,8 @@ import { ServerHttp2Stream, IncomingHttpHeaders } from 'http2';
 import { httpMethod, routePaths } from '../types/enums';
 import currencyExchangeHandler from '../handlers/currencyExchangeHandler';
 import notFoundHandler from '../handlers/notFoundHandler';
-import favIcoHandler from '../handlers/favIcoHandler'
-import logger from './logger'
+import favIcoHandler from '../handlers/favIcoHandler';
+import logger from './logger';
 
 const router = (stream: ServerHttp2Stream, headers: IncomingHttpHeaders) => {
   const path = headers[':path'];
