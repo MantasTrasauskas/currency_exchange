@@ -10,21 +10,11 @@ module.exports = {
       testMatch: ['<rootDir>/tests/*.test.(js)'],
       rootDir: path.resolve(__dirname, '.'),
       testPathIgnorePatterns: ['/node_modules/'],
-      coveragePathIgnorePatterns: ['/node_modules/', '/tests/', '/dist/'],
+      coveragePathIgnorePatterns: ['/node_modules/', '/tests/', '/dist/', '/src/types/'],
       transform: {
         '^.+\\.ts?$': 'ts-jest',
       },
     },
-  ],
-  reporters: [
-    'default',
-    'jest-junit',
-    [
-      './node_modules/jest-html-reporter',
-      {
-        pageTitle: 'Test Report',
-      },
-    ],
   ],
   coverageReporters: [
     'json',

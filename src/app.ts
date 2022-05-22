@@ -14,5 +14,5 @@ server.on('error', (err) => logger.error('Server error: %o', err));
 server.on('stream', router);
 
 server.listen(process.env.APP_PORT, () => {
-  logger.info(`🚀 ${process.env.npm_package_name} ready at http://localhost:${process.env.APP_PORT}`)
+  logger.info(`🚀 ${process.env.npm_package_name} ready at https://localhost:${process.env.APP_PORT}`)
 });

@@ -13,6 +13,7 @@ export const areQueryValuesValid = (requestParams: IRequest): boolean => {
       case 'baseAmount':
         if(value == null) result = false;
         if(isNaN(value)) result = false;
+        if(value <= 0) result = false;
         break;
     }
   }

@@ -15,7 +15,7 @@ export const getRequestParams = (headers: IncomingHttpHeaders): IRequest => {
   return {
     baseCurrency: requestURL.searchParams.get(queryString.BASE_CURRECNY),
     quoteCurrency: requestURL.searchParams.get(queryString.QUOTE_CURRENCY),
-    baseAmount: baseAmount != null ? parseInt(baseAmount) : null,
+    baseAmount: baseAmount != null ? parseFloat(baseAmount) : null,
   };
 };
 

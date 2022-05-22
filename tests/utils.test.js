@@ -1,6 +1,10 @@
 const utils = require('../src/utils/utils')
 const errorHandler = require('../src/handlers/errorHandler')
 
+afterEach(() => {
+    jest.clearAllMocks();
+});
+
 describe('Utils test', () => {
     test('getRequestParams test', () => {
 

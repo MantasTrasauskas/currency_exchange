@@ -1,17 +1,30 @@
 const LRUCache = require('../src/cache/LRUcache').default
-const exchangeRateResolver = require('../src/resolvers/exchangeRateResolver').default;
+const exchangeRateResolver = require('../src/resolvers/exchangeRateResolver');
 require('dotenv').config();
 
-jest.mock('../src/resolvers/exchangeRateResolver'.default, () => jest.fn());
-
+afterEach(() => {
+    jest.clearAllMocks();
+});
 
 describe('LRUCache test', () => {
-    test('LRUCache get test', () => {
+    test('LRUCache get with api call test', () => {
+        let spy = jest.spyOn(exchangeRateResolver, 'default')
 
         const lRUCache = new LRUCache();
-        lRUCache.get('USD').then((result) => {
+        return lRUCache.get('USD').then((result) => {
             expect(result['USD']).toEqual(1);
+            expect(spy).toHaveBeenLastCalledWith('USD');
+            expect(spy).toHaveBeenCalledTimes(1);
         })
     });
+    test('LRUCache get without api calltest', () => {
+        let spy = jest.spyOn(exchangeRateResolver, 'default')
 
+        const lRUCache = new LRUCache();
+        return lRUCache.get('USD').then(() => {
+            lRUCache.get('USD').then(() => {
+                expect(spy).toHaveBeenCalledTimes(1);
+            })
+        });
+    });
 });
