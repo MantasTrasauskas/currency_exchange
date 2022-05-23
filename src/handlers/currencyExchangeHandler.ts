@@ -13,24 +13,31 @@ const currencyExchangeHandler = async (
 ) => {
   logger.info('currencyExchange headers: %o', headers);
 
+  //validate query params
   const requestParams: IRequest = getRequestParams(headers);
   if (!areQueryValuesValid(requestParams)) {
     errorHandler('Invalid query parameters', stream);
     return;
   }
+
   logger.info('queryParams: %o', requestParams);
+
   let result: IResponse = {
     exchangeRate: 0,
     quoteAmount: 0,
   };
+
+  //get exchnage curreny value
   try {
     result = await exchangeReponseResolver(requestParams);
   } catch (error: any) {
     errorHandler(`${error.message}`, stream);
     return;
   }
+  //stringify result for response
   const response = safeJSON().stringify(result);
 
+  // if failed to stringify handle err
   if (response.status == safeJSONStatus.ERROR) {
     stream.respond({
       ':status': httpStatusCodes.INTERNAL_SERVER_ERROR,
@@ -39,6 +46,7 @@ const currencyExchangeHandler = async (
     return;
   }
 
+  //return result
   if (response.status == safeJSONStatus.OK) {
     stream.respond({
       ':status': httpStatusCodes.OK,

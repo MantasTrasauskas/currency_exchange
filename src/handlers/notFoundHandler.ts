@@ -2,6 +2,7 @@ import { IncomingHttpHeaders, ServerHttp2Stream } from 'http2';
 import { httpStatusCodes, httpResposeMsg } from '../types/enums';
 import logger from '../utils/logger';
 
+//if hit on incorrect path return err
 const notFoundHandler = (
   stream: ServerHttp2Stream,
   headers: IncomingHttpHeaders,

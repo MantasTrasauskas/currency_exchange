@@ -14,7 +14,7 @@ Please install
 2. yarn init:env
 3. yarn start
 
-Visual studio code lauch config added as well
+Visual studio code launch config added as well
 
 ## Query api
 Example:
@@ -33,14 +33,16 @@ Postman is not working as it does not support http2 or at least was not able to 
 
 ## TODO
 1. Unit test coverage is bad.
-2. Unit test should be ES6
-3. Add more logging including additional log levels
-4. Any type is used in severl places
+2. Unit test should be ES6.
+3. Add more logging including additional log levels.
+4. Any type is used in several places.
 5. Error handler need to be more sophisticated.
-6. No proper error handling when querryng 3rd party service.
+6. No proper error handling when querying 3rd party service.
 7. LRUcahce size could be set buy env var.
 8. No env var validation.
 9. Env vars only in file.
 10. No setup for translations.
-11. No comments
+11. No proper README
 12. Router path selection could be more sophisticated.
+13. Spelling.
+14. Integration tests.

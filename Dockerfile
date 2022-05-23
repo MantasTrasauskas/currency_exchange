@@ -1,5 +1,6 @@
 FROM node:18-alpine3.14 
 
+# remove unused bins and modules
 RUN rm -rf /usr/local/lib/node_modules/ \
     && rm -rf /usr/local/bin/npm \
     && rm -rf /usr/local/bin/npx 

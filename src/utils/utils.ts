@@ -4,6 +4,7 @@ import { queryString } from '../types/enums';
 import { errorHandler } from '../handlers/errorHandler';
 import { safeJSONStatus } from '../types/enums';
 
+//extract request params from query string
 export const getRequestParams = (headers: IncomingHttpHeaders): IRequest => {
   const requestURL = new URL(
     <string>headers[':path'],
@@ -19,6 +20,8 @@ export const getRequestParams = (headers: IncomingHttpHeaders): IRequest => {
   };
 };
 
+//JSON parse with integrated err handler
+//TODO there are better npm pacakages I am sure
 export const safeJSON = () => {
   const parse = (item: string): ISafeJSONResult => {
     // eslint-disable-next-line prefer-const

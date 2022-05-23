@@ -2,6 +2,9 @@ import { IRequest, IResponse, IRates } from '../types/commonTypes';
 import LRUCache from '../cache/LRUcache';
 
 const lruCache = new LRUCache();
+//get curreny rates and calculate
+//TODO typecasting does not look nice
+//TODO rounding could be and env var
 const exchangeReponseResolver = async (
   requestParams: IRequest,
 ): Promise<IResponse> => {

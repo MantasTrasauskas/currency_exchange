@@ -1,6 +1,8 @@
 import { IRates } from '../types/commonTypes';
 import exchangeRateResolver from '../resolvers/exchangeRateResolver';
 
+//very basic LRU cache if value is not pressent get it from 3rd party
+//TODO size should be an env var
 export default class LRUCache {
   private values: Map<string, IRates> = new Map<string, IRates>();
   private maxEntries: number;

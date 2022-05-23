@@ -2,6 +2,8 @@ import { IncomingHttpHeaders, ServerHttp2Stream } from 'http2';
 import { httpStatusCodes } from '../types/enums';
 import logger from '../utils/logger';
 
+//dummy favico response
+//TODO return favico
 const favIcoHandler = (
   stream: ServerHttp2Stream,
   headers: IncomingHttpHeaders,

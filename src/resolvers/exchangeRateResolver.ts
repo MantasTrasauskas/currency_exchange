@@ -4,6 +4,8 @@ import { safeJSONStatus } from '../types/enums';
 import logger from '../utils/logger';
 import { safeJSON } from '../utils/utils';
 
+//http2 sends request to 3rd party
+//TODO needs proper err handling
 const exchangeRateResolver = (curreny: string): Promise<IRates> => {
   const session = http2.connect(
     <string>process.env.CURRENY_EXHCANGE_API_DOMAIN,

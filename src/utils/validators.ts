@@ -2,6 +2,8 @@ import { IRequest } from '../types/commonTypes';
 import { AvilableCurrencies } from '../types/enums';
 import { queryString } from '../types/enums';
 
+//simple queryString value validator
+//check curreny types and valid amounts
 export const areQueryValuesValid = (requestParams: IRequest): boolean => {
   // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   let result: boolean = true;
