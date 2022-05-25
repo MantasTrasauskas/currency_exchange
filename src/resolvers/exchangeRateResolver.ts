@@ -5,21 +5,23 @@ import logger from '../utils/logger';
 import { safeJSON } from '../utils/utils';
 
 //http2 sends request to 3rd party
-//TODO needs proper err handling
 const exchangeRateResolver = (curreny: string): Promise<IRates> => {
-  const session = http2.connect(
-    <string>process.env.CURRENY_EXHCANGE_API_DOMAIN,
-  );
-
   return new Promise((resolve, reject) => {
-    session.on('error', (err) => reject(err));
+    const session = http2.connect(
+      <string>process.env.CURRENY_EXHCANGE_API_DOMAIN,
+    );
+    session.on('error', (error) => {
+      reject(error);
+    });
 
+    //open session start request
     const req = session.request({
       ':path': `${<string>process.env.CURRENY_EXHCANGE_API_PATH}${curreny}`,
     });
 
     req.end();
 
+    //hanlde response
     req.on('response', (headers) => {
       logger.info('currency exhange api: %o', headers);
     });
