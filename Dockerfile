@@ -20,4 +20,4 @@ COPY --chown=node:node ./key.pem .
 COPY --chown=node:node ./package.json .
 COPY --chown=node:node ./.env .
 
-ENTRYPOINT [ "node", "./dist/app.js"]
+ENTRYPOINT [ "node", "./dist/server.js"]
