@@ -1,6 +1,6 @@
 import { IncomingHttpHeaders, ServerHttp2Stream } from 'http2';
 import { IRequest, IResponse } from '../types/commonTypes';
-import { getRequestParams, safeJSON } from '../utils/utils';
+import { extractParamsFromPath, safeJSON } from '../utils/utils';
 import { areQueryValuesValid } from '../utils/validators';
 import { errorHandler } from './errorHandler';
 import exchangeReponseResolver from '../resolvers/exchangeReponseResolver';
@@ -14,7 +14,7 @@ const currencyExchangeHandler = async (
   logger.info('currencyExchange headers: %o', headers);
 
   //validate query params
-  const requestParams: IRequest = getRequestParams(headers);
+  const requestParams: IRequest = extractParamsFromPath(headers);
   if (!areQueryValuesValid(requestParams)) {
     errorHandler('Invalid query parameters', stream);
     return;
@@ -39,21 +39,14 @@ const currencyExchangeHandler = async (
 
   // if failed to stringify handle err
   if (response.status == safeJSONStatus.ERROR) {
-    stream.respond({
-      ':status': httpStatusCodes.INTERNAL_SERVER_ERROR,
-    });
-    stream.end('Server error parsing result');
+    errorHandler('Can not parse result', stream);
     return;
   }
-
   //return result
-  if (response.status == safeJSONStatus.OK) {
-    stream.respond({
-      ':status': httpStatusCodes.OK,
-    });
-    stream.end(response.item);
-    return;
-  }
+  stream.respond({
+    ':status': httpStatusCodes.OK,
+  });
+  stream.end(response.item);
 };
 
 export default currencyExchangeHandler;

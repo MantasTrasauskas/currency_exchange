@@ -7,7 +7,7 @@ module.exports = {
   projects: [
     {
       displayName: 'currency-exchange',
-      testMatch: ['<rootDir>/tests/*.test.(js)'],
+      testMatch: ['<rootDir>/tests/**/*.test.(js)',],
       rootDir: path.resolve(__dirname, '.'),
       testPathIgnorePatterns: ['/node_modules/'],
       coveragePathIgnorePatterns: ['/node_modules/', '/tests/', '/dist/', '/src/types/'],

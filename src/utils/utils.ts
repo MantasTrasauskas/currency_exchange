@@ -1,11 +1,12 @@
 import { IncomingHttpHeaders } from 'http2';
 import { IRequest, ISafeJSONResult } from '../types/commonTypes';
 import { queryString } from '../types/enums';
-import { errorHandler } from '../handlers/errorHandler';
 import { safeJSONStatus } from '../types/enums';
 
 //extract request params from query string
-export const getRequestParams = (headers: IncomingHttpHeaders): IRequest => {
+export const extractParamsFromPath = (
+  headers: IncomingHttpHeaders,
+): IRequest => {
   const requestURL = new URL(
     <string>headers[':path'],
     `https://${headers[':authority']}`,
@@ -32,7 +33,6 @@ export const safeJSON = () => {
     try {
       result.item = JSON.parse(item);
     } catch (error) {
-      errorHandler(`Can not parse item ${item}`);
       result.status = safeJSONStatus.ERROR;
     }
     return result;
@@ -47,7 +47,6 @@ export const safeJSON = () => {
     try {
       result.item = JSON.stringify(item);
     } catch (error) {
-      errorHandler(`Can not stringify item ${item}`);
       result.status = safeJSONStatus.ERROR;
     }
     return result;

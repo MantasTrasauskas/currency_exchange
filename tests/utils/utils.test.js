@@ -1,5 +1,5 @@
-const utils = require('../src/utils/utils')
-const errorHandler = require('../src/handlers/errorHandler')
+const utils = require('../../src/utils/utils')
+const errorHandler = require('../../src/handlers/errorHandler')
 
 afterEach(() => {
     jest.clearAllMocks();
@@ -46,18 +46,4 @@ describe('Utils test', () => {
         expect(result.item).toEqual(JSON.stringify({ test: 123 }));
 
     });
-    test('safeJSON parse test fail', () => {
-
-        const spy = jest.spyOn(errorHandler, 'errorHandler')
-
-        const safeJSON = utils.safeJSON()
-        const result = safeJSON.parse({ test: 123 })
-
-        expect(result).toEqual({
-            status: 1,
-            item: {}
-        });
-        expect(spy).toHaveBeenCalled()
-    });
-
 });

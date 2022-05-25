@@ -25,3 +25,12 @@ server.listen(process.env.APP_PORT, () => {
     `🚀 ${process.env.npm_package_name} ready at https://localhost:${process.env.APP_PORT}`,
   );
 });
+
+//In case of issues server will not die
+process
+  .on('unhandledRejection', (error: any) => {
+    logger.error(`unhandledRejection : ${error.message} : ${error.stack}`);
+  })
+  .on('uncaughtException', (error: any) => {
+    logger.error(`uncaughtException : ${error.message} : ${error.stack}`);
+  });
