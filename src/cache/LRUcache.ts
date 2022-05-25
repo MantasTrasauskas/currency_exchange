@@ -1,5 +1,4 @@
 import { IRates } from '../types/commonTypes';
-
 //very basic LRU cache with get and put methods
 export default class LRUCache {
   private values: Map<string, IRates> = new Map<string, IRates>();
@@ -8,7 +7,7 @@ export default class LRUCache {
   constructor(maxEntries = 3) {
     this.maxEntries = maxEntries;
   }
-
+  
   public get(key: string): IRates | null {
     const hasKey = this.values.has(key);
     if (hasKey) {
